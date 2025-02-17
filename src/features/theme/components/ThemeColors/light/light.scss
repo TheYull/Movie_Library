@@ -1,0 +1,13 @@
+/////light
+
+body.light {
+  --bg-color: #c6e0ff;
+  --footer-text: #6f7b88;
+  --text-color: #242424;
+  --accent-color: #cd78d3;
+  --extra-color: #643cb1;
+  --container-color: radial-gradient(circle, #eeaeca 0%, #94bbe9 100%);
+  --container-card-color: #d9bbd4;
+  --bg-gradient-img: linear-gradient(rgb(60 181 232 / 80%) 10%, rgb(255 255 255 / 80%) 50%, rgb(76 44 84 / 90%) 100%);
+  color: var(--text-color);
+}

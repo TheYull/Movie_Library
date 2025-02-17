@@ -1,0 +1,20 @@
+.Footer {
+  background: var(--bg-color);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  p {
+    color: var(--footer-text);
+  }
+
+  .TMDB {
+    background-color: #0d253f;
+    padding: 15px;
+    border-radius: 25px;
+    width: 170px;
+    height: 10px;
+  }
+}

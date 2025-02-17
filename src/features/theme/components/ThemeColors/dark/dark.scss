@@ -1,0 +1,16 @@
+///dark
+
+body.dark {
+  --bg-color: #000000;
+  --footer-text: #6f7b88;
+  --text-color: #afafaf;
+  --accent-color: #643cb1;
+  --extra-color: #cd78d3;
+  --container-color: linear-gradient(rgb(21 9 53 / 90%) 10%, rgb(58 5 58 / 88%) 50%, rgb(11 3 34 / 94%) 100%);
+  --container-card-color: #252627;
+  --bg-gradient-img: linear-gradient(rgb(30 24 24 / 87%) 10%, rgb(2 2 2 / 71%) 50%, rgb(0 0 0 / 94%) 100%);
+  color: var(--text-color);
+  .container img {
+    filter: brightness(0.8);
+  }
+}

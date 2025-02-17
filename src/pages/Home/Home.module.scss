@@ -1,0 +1,19 @@
+.Home {
+  min-height: 500px;
+  background: var(--container-color);
+  padding: 20px 0;
+
+  .headline {
+    text-align: center;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  .subheader {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+}
