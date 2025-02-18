@@ -7,7 +7,7 @@ export const Card = ({ id, image, title, type }) => {
 
   const handleClick = () => {
     if (id) {
-      navigate(`/card/${type}/${id}`); 
+      navigate(`/${type}/${id}`); 
     } else {
       console.error("Error: ID is undefined");
     }

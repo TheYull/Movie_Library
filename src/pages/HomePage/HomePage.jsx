@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContent } from "../../features/content/contentApi";
 import { MovieCard } from "../../features/movies/MovieCard";
 import { TVShowCard } from "../../features/tvshows/TVShowCard"
+import PaginationRounded from "../../components/PaginationRounded/PaginationRounded";
 
-export const Home = () => {
+export const HomePage = () => {
   const dispatch = useDispatch();
   const { movies, tvshows, loading, error } = useSelector((state) => state.content);
 
@@ -34,6 +35,7 @@ export const Home = () => {
             ) : (
                 <div>Серіали відсутні.</div>
             )}
+            <PaginationRounded />
       </div>
     </div>
   );

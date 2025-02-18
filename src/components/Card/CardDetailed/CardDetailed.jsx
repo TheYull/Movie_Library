@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import s from "./CardDetailed.module.scss";
-import { BASE_URL, API_KEY } from "../../../config/config";
+import { BASE_URL, API_KEY, IMG_URL } from "../../../config/config";
 
 export const CardDetailed = () => {
   const { id, type } = useParams();
@@ -29,23 +29,21 @@ export const CardDetailed = () => {
     }
   }, [id, type]);
 
-  if (loading) return <p>Завантаження...</p>;
-  if (error) return <p>Помилка: {error}</p>;
-  if (!data) return <p>Дані відсутні</p>;
+if (loading) return <p>Завантаження...</p>;
+if (error) return <p>Помилка: {error}</p>;
+if (!data) return <p>Дані відсутні</p>;
 
-  const formatNumber = (number) => {
-  if (!number) return "N/A";
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+const formatNumber = (number) => {
+if (!number) return "N/A";
+return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 };
-
-
 
   return (
     <div className="container media">
       <div style={{ backgroundImage: `url(${`https://image.tmdb.org/t/p/original/${data.backdrop_path}`})`, backgroundSize: 'cover' }}>
       <div className={s.wrapper_details}>
         <div className={s.img_container}>
-        <img src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.title} />
+        <img src={`${IMG_URL}${data.poster_path}`} alt={data.title} />
         </div>
           <div className={s.wrapper_text_info}>
             <div className={s.title_container}>
@@ -58,12 +56,9 @@ export const CardDetailed = () => {
             </div>
 
             <p><strong>Language: </strong>{data.original_language}</p>
-            <p><strong>Budget: </strong>${formatNumber(data.budget)}</p>
-            <p><strong>Revenue: </strong>${formatNumber(data.revenue)}</p>
-            
-            
-            
-
+            <p><strong>Budget: </strong>{formatNumber(data.budget)}</p>
+            <p><strong>Revenue: </strong>{formatNumber(data.revenue)}</p>
+          
             <div className={s.country_container}>
             <strong>Country:</strong>
             {
@@ -93,7 +88,6 @@ export const CardDetailed = () => {
             </div>
 
               <p><strong>Посилання: </strong><a href={data.homepage}></a></p>
-              {/* <p>{data.belongs_to_collection}</p> */}
           </div>
         </div>
         </div>

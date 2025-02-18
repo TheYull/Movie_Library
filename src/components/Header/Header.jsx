@@ -47,11 +47,10 @@ export const Header = () => {
           <DropdownMenu title="More" items={moreCategories} contentType="more" isFilter={false} />
         </li>
         <li>
-          {/* <input type="text" /> */}
           <SearchBar />
         </li>
       </ul>
-      <img src={user_logo} alt="user_logo" className={s.user_logo} />
+      <img src={user_logo} alt="user_logo" className={s.user_logo} onClick={() => navigate("/user")} />
       <ThemeSwitcher />
     </div>
   );

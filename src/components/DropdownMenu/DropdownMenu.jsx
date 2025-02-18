@@ -8,7 +8,6 @@ export const DropdownMenu = ({ title, items, contentType, isFilter = true }) => 
 
     const handleSelect = (item) => {
         const formattedItem = item.replace(/\s+/g, "_").toLowerCase();
-        // console.log("Selected item:", formattedItem);
 
         if (isFilter) { 
             const contentMap = {
@@ -23,7 +22,7 @@ export const DropdownMenu = ({ title, items, contentType, isFilter = true }) => 
                 "info": "/more",
             };
         const route = specialRoutes[formattedItem] || "/";
-        // console.log("Navigating to:", route); 
+
         navigate(route);
         }
     };

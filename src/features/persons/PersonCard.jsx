@@ -1,11 +1,11 @@
 import { Card } from "../../components/Card/Card";
-import { IMG_URL } from "../../config/config";
+import { IMG_URL, NO_IMG } from "../../config/config";
 
 export const PersonCard = ({ person }) => {
 
     const imageUrl = person.profile_path
         ? `${IMG_URL}${person.profile_path}`
-        : "https://via.placeholder.com/500x750?text=No+Image";
+        : NO_IMG;
 
     return (
         <Card 
