@@ -8,7 +8,6 @@ import { PersonPage } from "../pages/PersonPage/PersonPage";
 import { MorePage } from "../pages/MorePage/MorePage";
 import { UserPage } from "../pages/UserPage/UserPage";
 import { PersonDetailed } from "../components/Card/PersonDetailed/PersonDetailed";
-// import { SearchResults } from "../components/Search/SearchResults";
 
 
 const Layout = () => {
