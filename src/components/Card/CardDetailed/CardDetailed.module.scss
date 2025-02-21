@@ -53,6 +53,23 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  
+  .actors{
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .actor {
+    border: 1px solid var(--accent-color);
+    background-color: var(--container-card-color);
+    border-radius: 10px;
+    width: 200px;
+    img {
+      width: 200px;
+    }
+  }
 
 }

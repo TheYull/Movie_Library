@@ -1,62 +1,58 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { API_KEY, BASE_URL, IMG_URL, NO_IMG } from '../../../config/config';
-import s from "./PersonDetailed.module.scss"
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPersonDetails } from '../../../features/persons/personApi'; // Залишаємо цей імпорт
+import { fetchPersonCredits } from '../../../features/persons/personFilmography/personCredits'; // Додаємо імпорт fetchPersonCredits
+import { IMG_URL, NO_IMG } from '../../../config/config';
+import { PersonFilmography } from '../../../features/persons/personFilmography/PersonFilmography';
+import s from "./PersonDetailed.module.scss";
 
 export const PersonDetailed = () => {
     const { id } = useParams();
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
+    const dispatch = useDispatch();
+    
+    const personState = useSelector(state => state.person || {});
+    const personDetails = personState.personDetails; 
+    
+    const loading = personState.loading;
+    const error = personState.error;
+    
+    const personFilmographyState = useSelector(state => state.personFilmography || {});
+    const { credits = [], loading: creditsLoading, error: creditsError } = personFilmographyState;
+    
     useEffect(() => {
-        const fetchDetails = async () => {
-
-            try {
-                const response = await fetch(`${BASE_URL}/person/${id}?api_key=${API_KEY}`);
-
-                if (!response.ok) throw new Error("Failed to download data");
-                const result = await response.json();
-
-                setData(result);
-                } catch (err) {
-                setError(err.message);
-                } finally {
-                setLoading(false);
-                }
-            
-        };
-
+        // console.log("Person ID:", id); 
         if (id) {
-            fetchDetails();
-          }else {
-            console.error("No ID provided!");
+            dispatch(fetchPersonDetails(id)); 
+            dispatch(fetchPersonCredits(id));
         }
-    },[id]);
+    }, [dispatch, id]);
 
-    if (loading) return <p>Завантаження...</p>;
-    if (error) return <p>Помилка: {error}</p>;
-    if (!data) return <p>Дані відсутні</p>;
-    
-    const formatNumber = (number) => {
-    if (!number) return "N/A";
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    };
-    
+    if (loading) return <p>Loading person...</p>;
+    if (error) return <p>Error loading personal data: {error}</p>;
+    if (!personDetails) return <p>Data is not available</p>;
 
-  return (
-    <div className="container media">
-        <div className={s.header_container}>
-            <div className={s.img_container}>
-            <img src={data.profile_path ? `${IMG_URL}${data.profile_path}` : NO_IMG} alt={data.name} />
-            </div>
-            <div className={s.text_container}>
-                <h2>{data.name}</h2>
-                <p>{data.biography}</p>
-            </div>
-        
+
+    // console.log("Person Details:", personDetails);
+    // console.log("Credits:", credits);
+
+    return (
+        <div className="container media">
+            {personDetails && (
+                <div className={s.header_container}>
+                    <div className={s.img_container}>
+                        <img src={personDetails.profile_path ? `${IMG_URL}${personDetails.profile_path}` : NO_IMG} alt={personDetails.name} />
+                    </div>
+                    <div className={s.text_container}>
+                        <h2>{personDetails.name}</h2>
+                        <p>{personDetails.biography}</p>
+                    </div>
+                </div>
+            )}
+            <h2>Known For</h2>
+            {creditsLoading && <p>Downloading the filmography...</p>}
+            {creditsError && <p>Filmography error: {creditsError}</p>}
+            <PersonFilmography credits={credits} />
         </div>
-       <h2>Known For</h2> 
-    </div>
-  )
-}
+    );
+};

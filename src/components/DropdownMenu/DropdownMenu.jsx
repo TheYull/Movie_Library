@@ -9,23 +9,36 @@ export const DropdownMenu = ({ title, items, contentType, isFilter = true }) => 
     const handleSelect = (item) => {
         const formattedItem = item.replace(/\s+/g, "_").toLowerCase();
 
-        if (isFilter) { 
+        if (isFilter) {
             const contentMap = {
                 movies: "movie",
                 tvshows: "tv",
             };
             const contentPath = contentMap[contentType] || "movie";
-            navigate(`/filter/${contentPath}/${formattedItem}`);
+
+            const specialRoutes = { 
+                "on_tv": "/tv/on_the_air", 
+                "on_the_air": "/tv/on_the_air", 
+            };
+            const route = specialRoutes[formattedItem] || `/filter/${contentPath}/${formattedItem}`;
+            navigate(route);
+            // if (item === "on_tv" || item === "on_the_air") {
+            //     navigate(`/tv/on_the_air`); 
+            // } else {
+            //     navigate(`/filter/${contentPath}/${formattedItem}`);
+            // }
         } else {
             const specialRoutes = {
                 "popular_people": "/person",
                 "info": "/more",
             };
-        const route = specialRoutes[formattedItem] || "/";
+            const route = specialRoutes[formattedItem] || "/";
 
-        navigate(route);
+            navigate(route);
         }
+        handleClose();
     };
+
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -38,7 +51,6 @@ export const DropdownMenu = ({ title, items, contentType, isFilter = true }) => 
         setAnchorEl(null);
     };
 
-    // console.log(contentType);
     return (
         <div>
             <Button
@@ -55,6 +67,7 @@ export const DropdownMenu = ({ title, items, contentType, isFilter = true }) => 
                 anchorEl={anchorEl}
                 open={open}
                 onClose={handleClose}
+                onMouseLeave={handleClose}
                 MenuListProps={{
                     "aria-labelledby": "basic-button",
                 }}

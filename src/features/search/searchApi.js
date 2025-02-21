@@ -8,7 +8,7 @@ export const fetchSearch = createAsyncThunk(
             const response = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}&language=en-US`);
             if (!response.ok) throw new Error("Failed to fetch persons");
             const data = await response.json();
-            return data.result;
+            return data.results;
         } catch (error) {
         return rejectWithValue(error.message);
         }

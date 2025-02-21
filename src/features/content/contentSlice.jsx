@@ -20,17 +20,22 @@ const contentSlice = createSlice({
             })
             .addCase(fetchContent.fulfilled, (state, action) => {
                 state.loading = false;
-                const { type, data } = action.payload;
-                
-                if (type === "movie") {
-                    state.movies = data;
-                } else if (type === "tv") {
-                    state.tvshows = data;
+                if(action.payload && action.payload.type && action.payload.data){
+                    const { type, data } = action.payload;
+                    if (type === "movie") {
+                        state.movies = data;
+                    } else if (type === "tv" && action.payload.category !== "on_the_air") {
+                        state.tvshows = data;
+                    }
                 }
+                
             })
             .addCase(fetchContent.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload || "Error fetching content";
+                if (action.payload === "Use fetchOnTvShows for on_the_air TV shows.") {
+                    return; 
+                }
             });
     },
 });

@@ -5,6 +5,9 @@ import { API_KEY, BASE_URL } from "../../config/config";
 export const fetchContent = createAsyncThunk(
     "content/fetchContent",
     async ({ type, category }, { rejectWithValue }) => {
+      if (type === "tv" && category === "on_the_air" || category === "on_tv") {
+        return;
+      }
       try {
         const response = await axios.get(`${BASE_URL}/${type}/${category}`, {
           params: { api_key: API_KEY, language: "en-US", page: 1 },

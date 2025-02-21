@@ -8,7 +8,8 @@ import { PersonPage } from "../pages/PersonPage/PersonPage";
 import { MorePage } from "../pages/MorePage/MorePage";
 import { UserPage } from "../pages/UserPage/UserPage";
 import { PersonDetailed } from "../components/Card/PersonDetailed/PersonDetailed";
-
+import SearchPage from "../pages/SearchPage/SearchPage";
+import OnTVPage from "../pages/OnTVPage/OnTVPage";
 
 const Layout = () => {
   return (
@@ -36,8 +37,14 @@ const router = createBrowserRouter(
           path: "filter/:type/:category?",
           element: <FilterPage />
         },{
+          path: "tv/on_the_air/:id?",
+          element: <OnTVPage />
+        },{
           path: "person",
           element: <PersonPage />
+        },{
+          path: "person/:id",
+          element: <PersonDetailed />
         },{
           path: "more",
           element: <MorePage />
@@ -45,8 +52,8 @@ const router = createBrowserRouter(
           path: "user",
           element: <UserPage />
         },{
-          path: "person/:id",
-          element: <PersonDetailed />
+          path: "search",
+          element: <SearchPage />
         }
       ],
     },

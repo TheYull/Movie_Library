@@ -1,0 +1,24 @@
+.filmography {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem; // Або інша відстань між картками
+}
+
+.card {
+    width: 200px; // Або інша ширина картки
+    border: 1px solid #ccc; // Або інші стилі картки
+    padding: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card h3 {
+    margin-top: 10px;
+}
+
+.card p {
+    margin-bottom: 5px;
+}

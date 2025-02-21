@@ -16,11 +16,7 @@ export const FilterPage = () => {
   
     useEffect(() => {
         if (prevParams.current.category !== category || prevParams.current.type !== type) {
-            if (type === "peron"){
-                dispatch(fetchPerson());
-            } else {
-                dispatch(fetchContent({ type, category }));
-            }
+            dispatch(fetchContent({ type, category }));
             prevParams.current = { category, type };
         }
     }, [category, type, dispatch]);

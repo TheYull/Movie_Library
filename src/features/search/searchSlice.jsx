@@ -19,7 +19,7 @@ const searchSlice = createSlice({
             })
             .addCase(fetchSearch.fulfilled, (state, action) => {
                 state.loading = false;
-                state.search = action.payload;
+                state.searchResults = action.payload;
             })
             .addCase(fetchSearch.rejected, (state, action) => {
                 state.loading = false;
