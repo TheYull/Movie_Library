@@ -6,11 +6,12 @@ import ThemeSwitcher from "../../features/theme/components/ThemeSwitcher/ThemeSw
 import { DropdownMenu } from "../DropdownMenu/DropdownMenu";
 import { useNavigate } from "react-router-dom";
 import { SearchBar } from "../Search/SearchBar";
-
-
+import { useIsMobile } from "../../hooks/useIsMobile";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 export const Header = () => {
   const navigate = useNavigate(); 
+  const isMobile = useIsMobile();
 
   const movieCategories = ["Popular", "Now Playing", "Upcoming", "Top Rated"];
   const tvShowCategories = ["Popular", "Airing Today", "On Tv", "Top Rated"];
@@ -20,6 +21,9 @@ export const Header = () => {
   return (
     <div className={s.Header}>
       <img src={logo} alt="logo" className={s.logo}  onClick={() => navigate("/")} />
+
+      {isMobile ? <SearchBar /> : (
+        <>
       <ul>
         <li>
           <DropdownMenu
@@ -50,8 +54,17 @@ export const Header = () => {
           <SearchBar />
         </li>
       </ul>
-      <img src={user_logo} alt="user_logo" className={s.user_logo} onClick={() => navigate("/user")} />
-      <ThemeSwitcher />
+      
+        
+        <img src={user_logo} alt="user_logo" className={s.user_logo} onClick={() => navigate("/user")} />
+        <ThemeSwitcher />
+        </>
+      )}
+      
+      
+      { isMobile &&(
+        <BurgerMenu />
+      )}
     </div>
   );
 };

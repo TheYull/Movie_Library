@@ -25,8 +25,6 @@ export const SearchBar = () => {
         placeholder="Search.."
         onKeyDown={(e) => e.key === "Enter" && handlerSearch(e)}
       />
-      {/* <button type="submit">Search</button> */}
     </form>
   );
 };
-

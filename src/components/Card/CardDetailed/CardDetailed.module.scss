@@ -3,7 +3,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding: 40px 20px;
   background: var(--bg-gradient-img);
   width: 100%;
   .text_italic {
@@ -19,6 +18,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    padding: 40px 20px;
   }
   .country_container,
   .companies_container{
@@ -40,6 +40,7 @@
     flex-wrap: wrap;
  }
   .img_container {
+    padding: 40px 20px;
     width: 250px;
     img {
       width: 100%;
@@ -53,23 +54,42 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  .actors{
-    min-height: 200px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    gap: 10px;
-  }
-  .actor {
-    border: 1px solid var(--accent-color);
-    background-color: var(--container-card-color);
-    border-radius: 10px;
-    width: 200px;
-    img {
-      width: 200px;
-    }
-  }
 
+}
+.actors{
+  min-height: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: center;
+  gap: 10px;
+}
+.actor {
+  border: 1px solid var(--accent-color);
+  background-color: var(--container-card-color);
+  border-radius: 10px;
+  width: 200px;
+  img {
+    width: 200px;
+  }
+}
+// .video_container {
+//   display: flex;
+//   justify-content: center;
+//   padding: 20px;
+// }
+.video_container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+  height: 0;
+  overflow: hidden;
+}
+
+.video_container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

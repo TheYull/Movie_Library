@@ -24,7 +24,7 @@ export const PersonFilmography = ({ credits }) => {
   return (
     <div className={s.filmography}>
       {creditsWithKeys.map((credit) => (
-        <div key={`${credit.key}-${credit.media_type}-${credit.title || credit.name}-${credit.release_date || credit.first_air_date}`} className={s.card} onClick={() => handleClick(credit)} >
+        <div key={credit.key} className={s.card} onClick={() => handleClick(credit)} >
           <img
             src={credit.poster_path ? `${IMG_URL}${credit.poster_path}` : NO_IMG}
             alt={credit.title || credit.name}

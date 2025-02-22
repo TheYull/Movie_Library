@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import s from "./CardDetailed.module.scss";
 import { BASE_URL, API_KEY, IMG_URL, DETAILED_IMG_BACKGROUND, NO_IMG } from "../../../config/config";
+import VideoPlayer from "../../VideoPlayer/VideoPlayer";
 // import CardSlider from "./CardSlider/CardSlider";
 
 export const CardDetailed = () => {
@@ -102,7 +103,12 @@ const handleActorClick = (actorId) => {
 
             <p><strong>Посилання: </strong><a href={data.homepage}>Link</a></p>
           </div>
-          <h2>Актори:</h2>
+          
+            {/* <CardSlider items={actors} type="person" /> */}
+        </div>
+        
+        </div>
+        <h2>Актори:</h2>
           <div className={s.actors}>
             {actors.map((actor) => (
                 <div key={actor.id} className={s.actor} onClick={() => handleActorClick(actor.id)} >
@@ -110,10 +116,11 @@ const handleActorClick = (actorId) => {
                     <p>{actor.name}</p>
                 </div>
             ))}
-            </div>
-            {/* <CardSlider items={actors} type="person" /> */}
-        </div>
-        </div>
+          </div>
+          <div className={s.video_container}>
+          <VideoPlayer type={type} id={id} />
+          </div>
+          
     </div>
   );
 };

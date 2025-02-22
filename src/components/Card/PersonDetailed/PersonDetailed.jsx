@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPersonDetails } from '../../../features/persons/personApi'; // Залишаємо цей імпорт
-import { fetchPersonCredits } from '../../../features/persons/personFilmography/personCredits'; // Додаємо імпорт fetchPersonCredits
+import { fetchPersonDetails } from '../../../features/persons/personApi';
+import { fetchPersonCredits } from '../../../features/persons/personFilmography/personCredits';
 import { IMG_URL, NO_IMG } from '../../../config/config';
 import { PersonFilmography } from '../../../features/persons/personFilmography/PersonFilmography';
 import s from "./PersonDetailed.module.scss";
@@ -53,6 +53,7 @@ export const PersonDetailed = () => {
             {creditsLoading && <p>Downloading the filmography...</p>}
             {creditsError && <p>Filmography error: {creditsError}</p>}
             <PersonFilmography credits={credits} />
+            
         </div>
     );
 };
