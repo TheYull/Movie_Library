@@ -1,48 +1,53 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { API_KEY, BASE_URL } from "../../config/config";
+import s from "./VideoPlayer.module.scss";
 
 
-
-const VideoPlayer = ({ type, id }) => {
+export const VideoPlayer = ({ type, id }) => {
   const [videoKey, setVideoKey] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchVideo = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}`
-        );
-        const videos = response.data.results;
-        const trailer = videos.find(
-          (video) => video.type === "Trailer" && video.site === "YouTube"
-        );
+        const response = await fetch(`${BASE_URL}/${type}/${id}/videos?api_key=${API_KEY}`);
+        if (!response.ok) throw new Error("Failed to retrieve video");
+        
+        const data = await response.json();
+        const trailer = data.results.find(video => video.type === "Trailer") || data.results[0];
+
         if (trailer) {
           setVideoKey(trailer.key);
+        } else {
+          setError("Video not found");
         }
-      } catch (error) {
-        console.error("Error fetching video:", error);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchVideo();
-  }, [type, id]);
+    if (id) fetchVideo();
+  }, [id, type]);
 
-  if (!videoKey) {
-    return <p>No trailer available.</p>;
-  }
+  if (loading) return <p>Video download...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
-    <iframe
-      width="560"
-      height="315"
-      src={`https://www.youtube.com/embed/${videoKey}`}
-      title="YouTube video player"
-      className="video-player-frame"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-    ></iframe>
+    <div className={s.video_container}>
+      {videoKey ? (
+        <iframe
+          width="100%"
+          height="400"
+          src={`https://www.youtube.com/embed/${videoKey}`}
+          title="Trailer"
+          allowFullScreen
+        ></iframe>
+      ) : (
+        <p>Trailer not available</p>
+      )}
+    </div>
   );
 };
-
-export default VideoPlayer;

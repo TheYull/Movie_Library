@@ -1,0 +1,21 @@
+.info {
+    .country_container,
+    .companies_container {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 6px;
+        .text_container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+    .genre_container {
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}

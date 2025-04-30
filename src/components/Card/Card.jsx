@@ -18,7 +18,7 @@ export const Card = ({ id, image, title, type }) => {
     <div className={s.Card} onClick={handleClick}>
       <div className={s.containerCard}>
         <img src={image} alt={title} onError={(e) => e.target.src = NO_IMG} />
-        <h3>{title}</h3>
+        <h4>{title}</h4>
       </div>
     </div>
   );

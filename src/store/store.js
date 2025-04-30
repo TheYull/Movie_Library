@@ -6,16 +6,19 @@ import personReducer from "../features/persons/personSlice";
 import searchReducer from "../features/search/searchSlice";
 import onTvReducer from "../features/ontvshows/onTvSlice";
 import personFilmographyReducer from "../features/persons/personFilmography/personFilmographySlice";
+import moviesCarouselReducer from "../features/movies/moviesSlice";
 
 export const store = configureStore({
-    reducer: {
-        theme: themeReducer,
-        content: contentReducer,
-        onTv: onTvReducer,
-        person: personReducer,
-        search: searchReducer,
-        personFilmography: personFilmographyReducer,
-    }
+  reducer: {
+    theme: themeReducer,
+    content: contentReducer,
+    onTv: onTvReducer,
+    person: personReducer,
+    search: searchReducer,
+    personFilmography: personFilmographyReducer,
+    movies: moviesCarouselReducer,
+  },
 });
 
-export const useAppSelector = (selector) => useSelector(createSelector(selector, (res) => res));
+export const useAppSelector = (selector) =>
+  useSelector(createSelector(selector, (res) => res));

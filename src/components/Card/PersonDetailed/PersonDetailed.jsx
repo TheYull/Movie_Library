@@ -49,7 +49,7 @@ export const PersonDetailed = () => {
                     </div>
                 </div>
             )}
-            <h2>Known For</h2>
+            <h3>Known For</h3>
             {creditsLoading && <p>Downloading the filmography...</p>}
             {creditsError && <p>Filmography error: {creditsError}</p>}
             <PersonFilmography credits={credits} />
