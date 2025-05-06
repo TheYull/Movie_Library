@@ -7,6 +7,7 @@ import searchReducer from "../features/search/searchSlice";
 import onTvReducer from "../features/ontvshows/onTvSlice";
 import personFilmographyReducer from "../features/persons/personFilmography/personFilmographySlice";
 import moviesCarouselReducer from "../features/movies/moviesSlice";
+import authReducer from "../features/auth/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     search: searchReducer,
     personFilmography: personFilmographyReducer,
     movies: moviesCarouselReducer,
+    auth: authReducer,
   },
 });
 
