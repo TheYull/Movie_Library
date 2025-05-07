@@ -1,3 +1,19 @@
-.Search {
-  background-color: blueviolet;
+.search {
+  // background-color: blueviolet;
+  position: relative;
+
+  .autocomplete {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 0;
+    align-items: flex-start;
+    width: 260px;
+  }
+  li {
+    cursor: pointer;
+    color: black;
+  }
 }
