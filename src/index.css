@@ -4,7 +4,7 @@
 
 * {
   margin: 0;
-  font-family: 'Roboto', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
 }
 .container {
   min-height: 500px;
@@ -34,5 +34,18 @@ h2 {
 }
 h3 {
   font-size: 1.5rem;
-    text-transform: uppercase;
+  text-transform: uppercase;
+}
+.info {
+  padding: 0 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  ul {
+    background: none;
+  }
+  a {
+    color: rgb(53, 90, 213);
+    text-decoration: none;
+  }
 }
