@@ -10,7 +10,7 @@ export const Footer = () => {
         TMDB."
       </p>
       <img src={TMDB} alt="TMDB" className={s.TMDB} />
-      <p>@My project 2025</p>
+      <p>© 2025 PetCare. All rights reserved.</p>
     </div>
   );
 };
